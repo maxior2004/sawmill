@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Лесопилка
+{% endblock %}
+
+{% block body %}
+	<header class="p-3 mb-3  border-bottom bg-dark ">
+		<div class="container">
+			<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li>
+						<a href="#" class="nav-link px-2 link-secondary">Продукция</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link px-2 text-white">Контакты</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link px-2 text-white">Схема проезда</a>
+					</li>
+				</ul>
+
+
+			</div>
+		</div>
+	</header>
+
+
+	<section class="section-products fff">
+		<div class="container">
+			<div class="row justify-content-center text-center">
+				<div class="col-md-8 col-lg-6">
+					<div class="header">
+						<h1 class="mt-3 mb-4">Продукция</h1>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				{% for product in products %}
+					<div class="col-sm-4">
+						<div class="card single-product" id="product-{{product.id}}">
+							<img src="{{ asset('uploads/photos/' ~ product.imageFile) }}" class="card-img-top" alt="{{product.name}}">
+							<div class="card-body">
+								<h5 class="card-title">{{product.name}}</h5>
+								<h4 class="product-price">{{(product.price/100)|format_currency('RUB')  }}</h4>
+								<p class="card-text fs-6">{{product.description|nl2br}}</p>
+
+							</div>
+						</div>
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+		<div class="block feedback-container">
+			<div class="container">
+				<h1 class="title">Адрес</h1>
+				<div class="default-text">
+					Мы находимся в г. Нижний Новгород, пр-т. Гагарина 23А, офис №1. Склад и офис расположен на территории торговой базы «Меркурий».
+				</div>
+				<div class="map-block">
+					<p class="scheme-title">Как до нас добраться?</p>
+					<div class="map">
+						<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A64d38ab42987fd421ddba2101b8aa4e1353e845f82210adf633bde807856eeea&amp;source=constructor" width="1130" height="600" frameborder="0"></iframe>
+						<!--<img class="map-image" src="/design/template2022/images/contacts-map.png" alt="" />-->
+					</div>
+					<div class="map-desc">
+						<ul>
+							<li>
+								<span>1</span>
+								<p>Двигайтесь по проспекту Гагарина в направлении Дворца спорта</p>
+							</li>
+							<li>
+								<span>2</span>
+								<p>Поверните направо перед заправкой Лукойл на 90 градусов</p>
+							</li>
+							<li>
+								<span>3</span>
+								<p>Двигайтесь прямо, никуда не&nbsp;поворачивая, до&nbsp;синих ворот с&nbsp;надписью Торговый Дом Меркурий, синее крыльцо справа, 1&nbsp;этаж</p>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="contacts-block">
+					<div class="contact-block schedule-block">
+						<div class="schedule-block_h">Режим работы</div>
+						<div class="schedule-row schedule-row-1">
+							<div class="schedule-cell">ПН - ПТ</div>
+							<div class="schedule-cell">СБ</div>
+							<div class="schedule-cell">ВС</div>
+						</div>
+						<div class="schedule-row schedule-row-2">
+							<div class="schedule-cell">8:00 - 18:00</div>
+							<div class="schedule-cell">8:00 - 17:00</div>
+							<div class="schedule-cell">Выходной</div>
+						</div>
+					</div>
+					<div class="contact-block action-password-block">
+						<p>Получите скидку при оформлении заказа в нашем офисе, назовите менеджеру пароль</p>
+						<span>интернет-магазин</span>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

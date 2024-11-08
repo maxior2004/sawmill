@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Product
 {
     #[ORM\Id]
@@ -43,6 +46,31 @@ class Product
 
     #[ORM\Column]
     private ?bool $status = null;
+
+
+    /**
+     * @var Collection<int, Production>
+     */
+    #[ORM\OneToMany(targetEntity: Production::class, mappedBy: 'product')]
+    private Collection $productions;
+
+    /**
+     * @var Collection<int, Shipment>
+     */
+    #[ORM\OneToMany(targetEntity: Shipment::class, mappedBy: 'product')]
+    private Collection $shipments;
+
+    public function __construct()
+    {
+        $this->productions = new ArrayCollection();
+        $this->shipments = new ArrayCollection();
+    }
+
+    #[ORM\PrePersist]
+    public function setStatusValue()
+    {
+        $this->status = 1;
+    }
 
     public function getId(): ?int
     {
@@ -165,6 +193,73 @@ class Product
     public function setStatus(bool $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Production>
+     */
+    public function getProductions(): Collection
+    {
+        return $this->productions;
+    }
+
+    public function addProduction(Production $production): static
+    {
+        if (!$this->productions->contains($production)) {
+            $this->productions->add($production);
+            $production->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduction(Production $production): static
+    {
+        if ($this->productions->removeElement($production)) {
+            // set the owning side to null (unless already changed)
+            if ($production->getProduct() === $this) {
+                $production->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Shipment>
+     */
+    public function getShipments(): Collection
+    {
+        return $this->shipments;
+    }
+
+    public function addShipment(Shipment $shipment): static
+    {
+        if (!$this->shipments->contains($shipment)) {
+            $this->shipments->add($shipment);
+            $shipment->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShipment(Shipment $shipment): static
+    {
+        if ($this->shipments->removeElement($shipment)) {
+            // set the owning side to null (unless already changed)
+            if ($shipment->getProduct() === $this) {
+                $shipment->setProduct(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,105 @@
+body {
+    background: url("./../images/background.jpg");
+    background-size: cover;
+}
+
+.schedule-h {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #00A2E2;
+    margin-bottom: 10px;
+}
+
+.schedule-row {
+    display: flex;
+}
+
+.schedule-cell {
+    flex: 0 0 81px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #212121;
+}
+
+.schedule-row:first-child .schedule-cell {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    color: #9E9E9E;
+}
+
+.contact-block {
+    flex: 0 0 49%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 20px #E5E5E5;
+    border-radius: 10px;
+    padding: 30px 81px;
+    box-sizing: border-box;
+}
+
+.scheme-title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #212121;
+    margin-bottom: 30px;
+}
+
+.map-block {
+    margin-bottom: 115px;
+}
+
+.map-block>.map {
+    margin-bottom: 37px;
+}
+
+.map-block>.map img {
+    max-width: 100%;
+}
+
+.map-desc {
+    margin-bottom: 11px;
+}
+
+.map-desc ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-desc li {
+    flex: 0 0 33%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.map-desc li span {
+    display: block;
+    background: #FFF659;
+    width: 25px;
+    flex: 0 0 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 25px;
+    color: #212121;
+}
+
+.map-desc li p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    color: #212121;
+    padding-right: 10px;
+}

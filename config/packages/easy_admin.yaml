@@ -1,0 +1,29 @@
+easy_admin:
+  design:
+    variant: 'bootstrap4'
+  entities:
+    App\Entity\Product:
+      class: EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController
+      list:
+        fields: ['-id', 'name', 'price']
+      detail:
+        fields: ['-id', 'name', 'description', 'price']
+      new:
+        fields: ['name', 'description', 'price']
+      edit:
+        fields: ['name', 'description', 'price']
+  system:
+    dashboard:
+      groups:
+        -
+          title: 'Product Management'
+          items:
+            - route: 'easyadmin'
+              label: 'Product List'
+    list:
+        max_results: 17
+        actions:
+            - { name: 'new', icon: 'plus', label: 'Создать' }
+            - { name: 'show', icon: 'search', label: false }
+            - { name: 'edit', icon: 'pencil', label: false }
+            - { name: 'delete', icon: 'trash', label: false }
